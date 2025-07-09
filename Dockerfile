@@ -10,8 +10,10 @@ WORKDIR /app
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
+COPY . .
+
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -20,7 +22,7 @@ COPY . .
 RUN npm run build
 
 # Set the entrypoint
-ENTRYPOINT ["node", "dist/index.js"]
+ENTRYPOINT ["node", "dist/src/index.js"]
 
 # Default command (to be overridden by the user)
 CMD [""] 
